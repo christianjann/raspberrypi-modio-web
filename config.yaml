@@ -1,0 +1,4 @@
+
+debug: True
+datadir: data/ 
+maxusers: 20

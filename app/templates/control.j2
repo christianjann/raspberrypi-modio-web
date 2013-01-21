@@ -1,0 +1,78 @@
+{% extends "base.j2" %}
+
+{% from "macros.j2" import check_box %}
+
+{% block title_extra %} | Control{% endblock %}
+
+{% block content %}
+
+      <div class="row-fluid">
+        <div class="span2">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Overview</li>
+              <li class="active"><a href="#"><i class="icon-white icon-home"></i> Control</a></li>
+              <li><a href="{{ url_for('hardware.webcam') }}"><i class="icon-camera"></i> Webcam</a></li>
+              <li><a href="#"><i class="icon-signal"></i> Wireless</a></li>
+              <li><a href="#"><i class="icon-time"></i> Time Switch</a></li>
+
+              <li class="nav-header">Meta</li>
+              <li><a href="#"><i class="icon-user"></i> Profile</a></li>
+              <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
+              <li><a href="#"><i class="icon-flag"></i> Help</a></li>
+
+            </ul>
+          </div><!--/.well -->
+          {# <div class="well">{% include 'footer_links.j2' %}</div> #}
+        </div><!--/span-->
+        <div class="span10">
+
+          <div class="hero-unit">
+            <h1>Hello, world!</h1>
+            <p>This is a simple webapp running on the Raspberry Pi. Use it as a starting point to create something more unique.</p>
+            <p><a href="http://www.jann.cc/2013/01/21/control_your_light_at_home_with_a_raspberry_pi.html" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+          </div>
+
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} fade in"> <a href="#" data-dismiss="alert" class="close">×</a> {{ message }} </div>
+            {% endfor %}
+            {% endif %}
+          {% endwith %}
+
+          <div class="row-fluid">
+            <div class="span4">
+            
+              <h2>GPIOs</h2>
+              <form class="form form-horizontal" method="post" action="{{ url_for('hardware.set_gpio') }}">
+                {{ check_box('gpio23', 'GPIO 23 (GEN4)', value='1', checked=in_out['gpio23']) }}
+                {{ check_box('gpio24', 'GPIO 24 (GEN5)', value='1', checked=in_out['gpio24']) }}
+                <p><button name="action_leds" type="submit" class="btn btn-primary">Send</button></p>
+              </form>
+
+            </div><!--/span-->
+            <div class="span4">
+
+              <h2>MOD-IO2</h2>
+              <form class="form form-horizontal" method="post" action="{{ url_for('hardware.modio') }}">
+                {{ check_box('relay1', 'Relay 1', value='1', checked=in_out['relay1']) }}
+                {{ check_box('relay2', 'Relay 2', value='1', checked=in_out['relay2']) }}
+                <p><button name="action_leds" type="submit" class="btn btn-primary">Send</button></p>
+              </form>
+
+            </div><!--/span-->
+            <div class="span4">
+
+              <h2>Other</h2>
+
+            </div><!--/span-->
+          </div><!--/row-->
+
+        </div><!--/span-->
+      </div><!--/row-->
+
+{% endblock %}
+
+{% block extrabodyjs %}
+{% endblock %}

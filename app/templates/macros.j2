@@ -1,0 +1,12 @@
+
+{% macro check_box(name, text, value='', checked=False) -%}
+  {% if checked %}
+    <label class="checkbox"><input id="{{ name }}" name="{{ name }}" type="checkbox" value="{{ value|e}}" checked="checked"/>{{ text }}</label>
+  {% else %}
+    <label class="checkbox"><input id="{{ name }}" name="{{ name }}" type="checkbox" value="{{ value|e}}" />{{ text }}</label>
+  {% endif %}
+{%- endmacro %}
+
+{% macro input(name, value, type, size) %}
+<input type="{{ type|default('text') }}" name="{{ name }}" id="{{ name }}" value="{{ value|e }}" size="{{ size|default(20) }}" />
+{% endmacro %}

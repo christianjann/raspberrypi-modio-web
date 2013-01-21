@@ -1,0 +1,55 @@
+{% extends "base.j2" %}
+
+{% block title_extra %} | About{% endblock %}
+
+{% block head_extra %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap-docs.css') }}">
+{% endblock %}
+
+
+{% block content %}
+<div class="top-spacer-auto"></div>
+<div class="container">
+
+<!-- Masthead
+================================================== -->
+<header class="jumbotron subhead" id="overview">
+  <h1>About</h1>
+  <p class="lead">So, you want to know more about Raspberry Pi MOD-IO Web, just scroll down.</p>
+</header>
+
+<section id="credits">
+  <div class="page-header">
+    <h1>Powered by <small>...</small></h1>
+  </div>
+
+  <div class="row">
+    <div class="span4">
+      <h3>Flask</h3>
+      <p><a href="http://flask.pocoo.org/">Flask</a> is a microframework for Python based on
+      <a href="http://werkzeug.pocoo.org/">Werkzeug</a> and <a href="http://jinja.pocoo.org/">Jinja 2</a>.</p>
+    </div>
+    <div class="span4">
+      <h3>Bootstrap</h3>
+      <p>Designed and built with <a href="http://twitter.github.com/bootstrap/">Bootstrap</a>.</p>
+    </div>
+    <div class="span4">
+      <h3>Python</h3>
+      <p>Raspberry Pi MOD-IO Web is programmed in <a href="http://python.org/">Python</a>.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span4">
+      <h3>Glyphicons</h3>
+        <p>Icons from <a href="http://glyphicons.com">Glyphicons Free</a>,
+        licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+    </div>
+  </div>
+
+</section>
+
+</div> <!--container-->
+{% endblock %}   
+
+{% block extrabodyjs %}
+{% endblock %}

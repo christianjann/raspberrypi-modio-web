@@ -1,0 +1,48 @@
+{% extends "base.j2" %}
+
+{% from "macros.j2" import check_box %}
+
+{% block title_extra %} | Control{% endblock %}
+
+{% block head_extra %}
+  {# reload page every three seconds #}
+  {# <meta http-equiv="refresh" content="3; URL={{ url_for('hardware.webcam') }}"> #}
+{% endblock %}
+
+{% block content %}
+
+      <div class="row-fluid">
+        <div class="span2">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Overview</li>
+              <li><a href="{{ url_for('hardware.control') }}"><i class="icon-home"></i> Control</a></li>
+              <li class="active"><a href="#"><i class="icon-white icon-camera"></i> Webcam</a></li>
+              <li><a href="#"><i class="icon-signal"></i> Wireless</a></li>
+              <li><a href="#"><i class="icon-time"></i> Time Switch</a></li>
+
+              <li class="nav-header">Meta</li>
+              <li><a href="#"><i class="icon-user"></i> Profile</a></li>
+              <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
+              <li><a href="#"><i class="icon-flag"></i> Help</a></li>
+
+            </ul>
+          </div><!--/.well -->
+          {# <div class="well">{% include 'footer_links.j2' %}</div> #}
+        </div><!--/span-->
+        <div class="span10">
+
+          <div class="row-fluid">
+            <a href="{{ url_for('hardware.camimage') }}">
+              <img class="thumbnail" style="max-width:95%;" alt="webcam image" src="{{ url_for('hardware.camimage') }}">
+            </a>
+            Reload the page to see the next image.
+          </div><!--/row-->
+
+        </div><!--/span-->
+      </div><!--/row-->
+
+{% endblock %}
+
+{% block extrabodyjs %}
+{% endblock %}

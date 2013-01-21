@@ -1,0 +1,6 @@
+usercount: 1
+users:
+- email: admin@localhost.local
+  password_hash: sha1$HZpvgMBn$eee7823652beadaef9dc2aef591e701757264ead
+  user_id: 0
+  username: admin

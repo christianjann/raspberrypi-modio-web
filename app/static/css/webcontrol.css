@@ -1,0 +1,75 @@
+
+.navbar .webcontrol-icon {
+  background-image: url("/static/img/black_20px.png");
+  background-position: 5px 8px;
+  background-repeat: no-repeat;
+  padding: 8px 35px 12px;
+}
+
+.page {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.bottombar {
+    position: fixed;
+    padding-left: 20px;
+    padding-right: 20px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+html, body {
+    height: 100%;
+    margin:0;
+    padding:0;
+}
+
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin-bottom: -75px;
+    margin-top:0px;
+}
+
+.push {
+    height: 20px;
+}
+
+.bottom-spacer {
+    height: 65px;
+}
+
+.navbar-fixed-top {
+/*     position: static; */
+}
+
+.form-style {
+  max-width: 300px;
+  padding: 19px 29px 29px;
+  margin: 0 auto 20px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  list-style: none;
+}
+.form-style .form-style-heading,
+.form-style .checkbox {
+  margin-bottom: 10px;
+}
+.form-style input[type="text"],
+.form-style input[type="password"],
+.form-style textarea {
+  font-size: 16px;
+  height: auto;
+  margin-bottom: 15px;
+  padding: 7px 9px;
+  width: 280px;
+}

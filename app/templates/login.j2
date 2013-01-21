@@ -1,0 +1,20 @@
+{% extends "user.j2" %}
+
+{% block title_extra %} | Log In{% endblock %}
+
+{% block flasker_bottom %}
+  {% if error %}
+      <div class="alert alert-error fade in"> 
+          <a href="#" data-dismiss="alert" class="close">×</a>
+          <strong>Error:</strong> {{ error }} 
+      </div>
+  {% endif %}
+
+  <form action="{{ url_for('login') }}" method=post class="form-style">
+    <h2 class="form-style-heading">Login</h2>
+    <input type="text" class="input-block-level" name="username" placeholder="Username" size=30>
+    <input type="password" class="input-block-level" name="password" placeholder="Password" size=30>
+    <button class="btn btn-large btn-primary" type="submit">Login</button>
+  </form>
+
+{% endblock %}

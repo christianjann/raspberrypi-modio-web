@@ -1,0 +1,22 @@
+{% extends "user.j2" %}
+
+{% block title_extra %} | Sign Up{% endblock %}
+
+{% block flasker_bottom %}
+  {% if error %}
+      <div class="alert alert-error fade in"> 
+          <a href="#" data-dismiss="alert" class="close">×</a>
+          <strong>Error:</strong> {{ error }} 
+      </div>
+  {% endif %}
+  <form action="" method=post class="form-style">
+    <h2 class="form-style-heading">Sign Up</h2>
+    <input type="text" class="input-block-level" name="username" placeholder="Username" size=30 value="{{ request.form.username }}">
+    <input type="text" class="input-block-level" name="email" placeholder="E-Mail" size=30 value="{{ request.form.email }}">
+    <input type="password" class="input-block-level" name="password" placeholder="Password" size=30>
+    <input type="password" class="input-block-level" name="password2" placeholder="Password (repeat)" size=30>
+    <button class="btn btn-large btn-primary" type="submit">Sign Up</button>
+  </form>
+
+{% endblock %} 
+

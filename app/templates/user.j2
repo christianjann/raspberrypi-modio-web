@@ -1,0 +1,16 @@
+{% extends "base.j2" %}
+
+{% block title_extra %} | Messages{% endblock %}
+
+{% block content %}
+    <div class=page>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+          {% for category, message in messages %}
+              <div class="alert alert-{{ category }} fade in"> <a href="#" data-dismiss="alert" class="close">×</a> {{ message }} </div>
+          {% endfor %}
+          {% endif %}
+      {% endwith %}
+      {% block flasker_bottom %} {% endblock %}
+    </div>
+{% endblock %}  
