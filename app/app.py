@@ -51,7 +51,7 @@ def before_request():
 #@app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    flash('Error: path: %s is not avaible' % path,'error')
+    #flash('Error: path: %s is not avaible' % path,'error')
     return redirect(url_for('show_start_page'))
 
 @app.route('/')
