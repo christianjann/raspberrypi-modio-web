@@ -10,3 +10,9 @@
 {% macro input(name, value, type, size) %}
 <input type="{{ type|default('text') }}" name="{{ name }}" id="{{ name }}" value="{{ value|e }}" size="{{ size|default(20) }}" />
 {% endmacro %}
+
+{% macro render_mitem(endpoint, caption, active='') %}
+<li {% if request.endpoint == endpoint or active == endpoint %} class='active' {% endif %}>
+    <a href="{{url_for(endpoint)}}">{{ caption }}</a>
+</li>
+{% endmacro %}

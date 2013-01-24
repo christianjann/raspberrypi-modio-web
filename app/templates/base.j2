@@ -1,3 +1,6 @@
+
+{% from "macros.j2" import render_mitem with context %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,14 +40,9 @@
           <div class="nav-collapse">
             <ul class="nav">
               {% block navbar_links %}
-                {% for endpoint, caption in [
-                    ('show_start_page', 'Start'),
-                    ('hardware.control', 'Control'),
-                    ('show_about_page', 'About')
-                    ] %}
-                    <li{% if endpoint == request.endpoint %} class=active{% endif %}>
-                    <a href={{ url_for(endpoint) }}>{{ caption }}</a></li>
-                {%- endfor %}
+                {{render_mitem('show_start_page',  'Start', active=active_page)}}
+                {{render_mitem('hardware.control',  'Control', active=active_page)}}
+                {{render_mitem('show_about_page',  'About', active=active_page)}}
               {% endblock %}
             </ul>
 
