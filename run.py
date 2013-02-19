@@ -15,5 +15,5 @@ from app.app import app
 
 if __name__ == '__main__':
 
-  # '0.0.0.0': listen on all public IPs
-  app.run(host = '0.0.0.0', port = 8080, debug = settings['debug'])
+    # '0.0.0.0': listen on all public IPs
+    app.run(host='0.0.0.0', port=8080, debug=settings['debug'])

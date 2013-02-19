@@ -14,24 +14,26 @@ from settings import settings
 import yaml
 import os
 
-def get_user(key,value):
-    yamlfile=open(settings['datadir']+ 'users.yaml',"r")
+
+def get_user(key, value):
+    yamlfile = open(settings['datadir'] + 'users.yaml', "r")
     userconf = yaml.load(yamlfile)
     for user in userconf['users']:
-        if (user[key]==value):
+        if (user[key] == value):
             return user
     return None
+
 
 def add_user(username, password, email):
     if (get_user('username', username) is None):
     # check if the username is allready taken
-        yamlfile=open(settings['datadir']+ 'users.yaml',"r")
+        yamlfile = open(settings['datadir'] + 'users.yaml', "r")
         userconf = yaml.load(yamlfile)
         # userid = len(userconf['users']) +1
         userid = int(userconf['usercount'])
         userconf['usercount'] = userid + 1
         print(" * Adding user: " + username + " user_id=" + str(userid))
-        yamlfile=open(settings['datadir']+ 'users.yaml',"w")
+        yamlfile = open(settings['datadir'] + 'users.yaml', "w")
         userconf['users'].append({'username': username,
                                   'password_hash': generate_password_hash(password),
                                   'email': email,

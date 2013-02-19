@@ -9,9 +9,11 @@
     :license: AGPL, see LICENSE for more details.
 """
 
-import datetime, os, shutil
+import datetime
+import os
+import shutil
 from flask import Flask, request, session, g, redirect, url_for, abort, \
-     render_template, flash, Markup, escape, send_from_directory
+    render_template, flash, Markup, escape, send_from_directory
 from werkzeug import check_password_hash
 from settings import settings
 from users import add_user, get_user
@@ -26,16 +28,18 @@ app.config.from_object(__name__)
 
 # init folder structure
 if not os.path.exists(settings['datadir']):
-    shutil.copytree("app/default",settings['datadir'])
+    shutil.copytree("app/default", settings['datadir'])
 
 # add your modules
 app.register_blueprint(hardware, url_prefix='/control')
+
 
 @app.context_processor
 def inject_year():
     # {{ year }} is now avaible in templates
     now = datetime.datetime.utcnow()
     return dict(year=now.strftime("%Y"))
+
 
 @app.before_request
 def before_request():
@@ -44,28 +48,34 @@ def before_request():
         g.user = get_user('user_id', session['user_id'])
 
 #@app.teardown_request
-#def teardown_request(exception):
+# def teardown_request(exception):
 #    print("end of request")
 
-#Catch-All URL
+# Catch-All URL
 #@app.route('/', defaults={'path': ''})
+
+
 @app.route('/<path:path>')
 def catch_all(path):
-    #flash('Error: path: %s is not avaible' % path,'error')
+    # flash('Error: path: %s is not avaible' % path,'error')
     return redirect(url_for('show_start_page'))
+
 
 @app.route('/')
 def show_start_page():
     return render_template('start.j2')
 
+
 @app.route('/about')
 def show_about_page():
     return render_template('about.j2')
 
+
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static/img'),
-                              'favicon.ico', mimetype='image/vnd.microsoft.icon')
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -78,7 +88,7 @@ def login():
         if user is None:
             error = 'Invalid username'
         elif not check_password_hash(user['password_hash'],
-                                    request.form['password']):
+                                     request.form['password']):
             error = 'Invalid password'
         else:
             session['logged_in'] = True
@@ -87,18 +97,20 @@ def login():
             return redirect(url_for('hardware.control'))
     return render_template('login.j2', error=error)
 
+
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
     session.pop('user_id', None)
-    flash('You were logged out','success')
+    flash('You were logged out', 'success')
     return redirect(url_for('show_start_page'))
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     """Registers the user."""
-    #if g.user:
-        #return redirect(url_for('timeline'))
+    # if g.user:
+        # return redirect(url_for('timeline'))
     error = None
     if request.method == 'POST':
         if not request.form['username']:
@@ -113,8 +125,9 @@ def register():
         elif get_user('username', request.form['username']) is not None:
             error = 'The username is already taken'
         else:
-            add_user(request.form['username'], request.form['password'], request.form['email'])
-            flash('You were successfully registered and can login now','success')
+            add_user(request.form['username'], request.form[
+                     'password'], request.form['email'])
+            flash(
+                'You were successfully registered and can login now', 'success')
             return redirect(url_for('login'))
     return render_template('register.j2', error=error)
-
